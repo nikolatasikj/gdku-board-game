@@ -1,6 +1,6 @@
 import {questions} from "./questions.js";
 
-let fieldIdx = 0;
+let fieldNumber = 0;
 const tableGrid = document.querySelector('#table-grid')
 const diceEl = document.querySelector('#dice');
 const rollBtn = document.querySelector('#roll-btn');
@@ -21,49 +21,52 @@ const finishEl = tableGrid.children[0].cloneNode()
 finishEl.innerHTML = 'Finish';
 tableGrid.appendChild(finishEl)
 
-const setNewFieldIdx = (idx) => {
-    fieldIdx += idx;
-    const fieldPosition = tableGrid.children[fieldIdx].getBoundingClientRect()
-    iconEl.style.left = `${fieldPosition.left + 15}px`;
-    iconEl.style.top = `${fieldPosition.top + 29}px`;
+const increaseFieldNumber = (idx) => {
+    fieldNumber += idx;
+    const fieldPosition = tableGrid.children[fieldNumber].getBoundingClientRect()
+    iconEl.style.left = `${fieldPosition.left + 50}px`;
+    iconEl.style.top = `${fieldPosition.bottom}px`;
 }
 
-setNewFieldIdx(0)
+increaseFieldNumber(0)
 
 const rollDice = () => {
     diceEl.style.visibility = 'visible';
     diceEl.style.bottom = 'calc(50% - 51px)';
     rollBtn.disabled = true;
+
     const newNumber = Math.floor((Math.random() * 6) + 1);
-    const isSameNumber = diceEl.classList.contains(`show-${newNumber}`)
+    diceEl.className = 'dice';
+    diceEl.classList.add(`show-${newNumber}`);
 
-    if (isSameNumber) {
-        rollDice()
+    setTimeout(() => hideDice(), 2000)
+    if (fieldNumber + newNumber === questions.length + 1) {
+        setTimeout(() => showMessage('You won!', true), 2000)
+        increaseFieldNumber(newNumber);
+    } else if (fieldNumber + newNumber > questions.length) {
+        setTimeout(() => showMessage(`You need ${questions.length - fieldNumber + 1} to win!`, false, 1900), 2000)
     } else {
-        for (let i = 1; i <= 6; i++) {
-            diceEl.classList.remove('show-' + i);
-            if (newNumber === i) {
-                diceEl.classList.add('show-' + i);
-            }
-        }
-
-        setTimeout(() => askQuestion(newNumber - 1), 2000)
+        setTimeout(() => askQuestion(newNumber), 2000)
     }
+}
+
+const hideDice = () => {
+    diceEl.style.visibility = 'hidden'
+    diceEl.style.bottom = '0';
+    diceEl.className = 'dice';
+    rollBtn.disabled = false;
 }
 
 const askQuestion = (newNumber) => {
     questionModal.style.display = 'flex'
-    diceEl.style.visibility = 'hidden'
-    diceEl.style.bottom = '0';
-    rollBtn.disabled = false;
-
     prepareQuestion(newNumber)
 }
 
 const prepareQuestion = (newNumber) => {
-    const questionIdx = newNumber + fieldIdx
+    const questionIdx = newNumber + fieldNumber - 1;
+    const newFieldNumber = newNumber + fieldNumber;
     const questionTitle = document.createElement('h2');
-    questionTitle.innerHTML = `Question for #${questionIdx + 1} field`;
+    questionTitle.innerHTML = `Question for #${newFieldNumber} field`;
 
     const questionImg = document.createElement('img');
     questionImg.src = questions[questionIdx].imageUrl;
@@ -99,7 +102,7 @@ const prepareQuestion = (newNumber) => {
     const optionSubmit = document.createElement("button");
     optionSubmit.classList.add("option-submit-btn");
     optionSubmit.innerHTML = "Submit";
-    optionSubmit.onclick = () => checkAnswer(newNumber, questionOptions);
+    optionSubmit.onclick = () => checkAnswer(newNumber, questionIdx, questionOptions);
 
     questionModal.append(questionTitle)
     questionModal.append(questionImg)
@@ -108,7 +111,7 @@ const prepareQuestion = (newNumber) => {
     questionModal.append(optionSubmit)
 }
 
-const checkAnswer = (newNumber, questionOptions) => {
+const checkAnswer = (newNumber, questionIdx, questionOptions) => {
     let selectedValue = '';
     questionOptions.querySelectorAll("input").forEach((option) => {
         if (option.checked) {
@@ -121,19 +124,19 @@ const checkAnswer = (newNumber, questionOptions) => {
         questionModal.innerHTML = '';
     }
 
-    if (parseInt(selectedValue) === questions[fieldIdx + newNumber].correctAnswerId) {
-        setNewFieldIdx(newNumber + 1)
-        showMessage(true)
+    if (parseInt(selectedValue) === questions[questionIdx].correctAnswerId) {
+        increaseFieldNumber(newNumber)
+        showMessage('Correct answer!', true)
     } else {
-        showMessage(false)
+        showMessage('Incorrect answer!', false)
     }
 }
 
-const showMessage = (isCorrect) => {
-    messageEl.innerHTML = isCorrect ? 'Correct answer!' : 'Incorrect answer!';
+const showMessage = (message, isSuccess, duration = 3000) => {
+    messageEl.innerHTML = message;
     messageEl.style.display = 'block'
-    messageEl.style.border = isCorrect ? '2px solid green' : '2px solid red'
-    messageEl.style.color = isCorrect ? 'green' : 'red'
+    messageEl.style.border = isSuccess ? '2px solid green' : '2px solid red'
+    messageEl.style.color = isSuccess ? 'green' : 'red'
 
-    setTimeout(() => messageEl.style.display = 'none', 3000)
+    setTimeout(() => messageEl.style.display = 'none', duration)
 }

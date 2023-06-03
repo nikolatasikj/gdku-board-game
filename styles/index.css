@@ -29,8 +29,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border: 1px solid black;
     border-radius: 10px;
 }
@@ -63,6 +63,8 @@
 #user-icon {
     position: absolute;
     transition: 1.5s all;
+    transform: translate(-50%, -100%);
+    width: 65px;
 }
 
 #question {
