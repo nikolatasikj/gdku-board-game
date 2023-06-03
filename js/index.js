@@ -65,7 +65,8 @@ const askQuestion = (newNumber) => {
 const prepareQuestion = (newNumber) => {
     const questionIdx = newNumber + fieldNumber - 1;
     const newFieldNumber = newNumber + fieldNumber;
-    const questionTitle = document.createElement('h2');
+
+    const questionTitle = document.createElement('h1');
     questionTitle.innerHTML = `Question for #${newFieldNumber} field`;
 
     const questionImg = document.createElement('img');
@@ -76,21 +77,24 @@ const prepareQuestion = (newNumber) => {
     const questionOptions = document.createElement("div");
     questionOptions.style.textAlign = 'left';
 
-    const questionText = document.createElement("h3");
+    const questionText = document.createElement("h1");
     questionText.innerHTML = questions[questionIdx].text;
+    questionText.classList.add('question-text')
 
     questions[questionIdx].options.forEach((option) => {
         const optionWrapper = document.createElement("div");
-        optionWrapper.style.marginBottom = "8px";
+        optionWrapper.classList.add('option-wrapper')
 
         const optionInput = document.createElement("input");
         optionInput.setAttribute('type', 'radio');
         optionInput.setAttribute('value', option.id);
         optionInput.setAttribute('name', 'questionOption');
         optionInput.setAttribute('id', `option-${questions[questionIdx].id}-${option.id}`);
+        optionInput.setAttribute('class', 'option-input');
 
         const optionLabel = document.createElement("label");
         optionLabel.setAttribute('for', `option-${questions[questionIdx].id}-${option.id}`);
+        optionLabel.setAttribute('class', 'option-label');
         optionLabel.innerHTML = option.text;
 
         optionWrapper.append(optionInput)

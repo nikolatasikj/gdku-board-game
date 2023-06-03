@@ -79,12 +79,14 @@ html {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    padding: 32px;
+    width: calc(100% - 64px);
+    height: calc(100% - 64px);
     background: rgba(0, 0, 0, 0.7);
     text-align: center;
     color: white;
     z-index: 9;
+    overflow-y: auto;
 }
 
 .option-submit-btn {
@@ -118,4 +120,28 @@ html {
     background: white;
     padding: 8px;
     border-radius: 5px;
+}
+
+.option-wrapper {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 576px) {
+    .option-wrapper {
+        margin-bottom: 32px;
+    }
+
+    .option-input {
+        width: 30px;
+        height: 30px;
+        margin-right: 16px;
+    }
+
+    .option-label {
+        font-size: 50px;
+    }
+
+    .question-text {
+        font-size: 60px;
+    }
 }
