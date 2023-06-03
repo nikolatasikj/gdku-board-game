@@ -4,7 +4,10 @@
     --tertiary-color: #4F709C;
     --quartary-color: #213555;
     --warning-color: #CD1818;
-    --success-color: #116D6E
+    --success-color: #116D6E;
+
+    min-height: 100vh;
+    background-color: var(--primary-color);
 }
 
 #table-grid {
@@ -17,7 +20,7 @@
     border-radius: 5px;
     justify-content: center;
     background-color: var(--primary-color);
-    margin-bottom: 100px;
+    margin-bottom: 200px;
 }
 
 .grid-item {
