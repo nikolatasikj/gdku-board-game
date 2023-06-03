@@ -5,7 +5,9 @@
     --quartary-color: #213555;
     --warning-color: #CD1818;
     --success-color: #116D6E;
+}
 
+html {
     min-height: 100vh;
     background-color: var(--primary-color);
 }
