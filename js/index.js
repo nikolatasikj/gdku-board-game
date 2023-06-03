@@ -135,8 +135,8 @@ const checkAnswer = (newNumber, questionIdx, questionOptions) => {
 const showMessage = (message, isSuccess, duration = 3000) => {
     messageEl.innerHTML = message;
     messageEl.style.display = 'block'
-    messageEl.style.border = isSuccess ? '2px solid green' : '2px solid red'
-    messageEl.style.color = isSuccess ? 'green' : 'red'
+    messageEl.style.border = isSuccess ? '2px solid var(--success-color)' : '2px solid var(--warning-color)'
+    messageEl.style.color = isSuccess ? 'var(--success-color)' : 'var(--warning-color)'
 
     setTimeout(() => messageEl.style.display = 'none', duration)
 }

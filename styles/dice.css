@@ -16,8 +16,8 @@
     height: 20px;
     margin: -10px 5px 5px -10px;
     border-radius: 20px;
-    background-color: #ef233c;
-    box-shadow: inset 2px 2px #d90429;
+    background-color: var(--warning-color);
+    box-shadow: inset 2px 2px var(--warning-color);
 }
 
 .side {
@@ -26,7 +26,7 @@
     border-radius: 5px;
     width: 100px;
     height: 100px;
-    border: 1px solid black;
+    border: 2px solid var(--quartary-color);
     text-align: center;
     line-height: 2em;
 }
