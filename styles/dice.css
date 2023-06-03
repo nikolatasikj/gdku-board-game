@@ -1,10 +1,10 @@
 .dice {
     visibility: hidden;
     position: fixed;
-    left: calc(50% - 51px);
+    left: calc(50% - 100px);
     bottom: 0;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     transform-style: preserve-3d;
     transition: transform 1s, bottom .5s;
     z-index: 1;
@@ -12,47 +12,47 @@
 
 .dot {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    margin: -10px 5px 5px -10px;
+    width: 40px;
+    height: 40px;
+    margin: -20px 10px 10px -20px;
     border-radius: 20px;
     background-color: var(--warning-color);
-    box-shadow: inset 2px 2px var(--warning-color);
+    box-shadow: inset 4px 4px var(--warning-color);
 }
 
 .side {
     position: absolute;
     background-color: #ffF;
     border-radius: 5px;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border: 2px solid var(--quartary-color);
     text-align: center;
     line-height: 2em;
 }
 
 .side:nth-child(1) {
-    transform: translateZ(3.1em);
+    transform: translateZ(6.1em);
 }
 
 .side:nth-child(6) {
-    transform: rotateY(90deg) translateZ(3.1em);
+    transform: rotateY(90deg) translateZ(6.1em);
 }
 
 .side:nth-child(3) {
-    transform: rotateY(-90deg) translateZ(3.1em);
+    transform: rotateY(-90deg) translateZ(6.1em);
 }
 
 .side:nth-child(4) {
-    transform: rotateX(90deg) translateZ(3.1em);
+    transform: rotateX(90deg) translateZ(6.1em);
 }
 
 .side:nth-child(5) {
-    transform: rotateX(-90deg) translateZ(3.1em);
+    transform: rotateX(-90deg) translateZ(6.1em);
 }
 
 .side:nth-child(2) {
-    transform: rotateY(-180deg) translateZ(3.1em);
+    transform: rotateY(-180deg) translateZ(6.1em);
 }
 
 .two-1, .three-1, .four-1, .five-1, .six-1 {

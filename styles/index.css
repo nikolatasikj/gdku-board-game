@@ -123,25 +123,20 @@ html {
 }
 
 .option-wrapper {
-    margin-bottom: 8px;
+    margin-bottom: 32px;
 }
 
-@media (max-width: 576px) {
-    .option-wrapper {
-        margin-bottom: 32px;
-    }
-
-    .option-input {
-        width: 30px;
-        height: 30px;
-        margin-right: 16px;
-    }
-
-    .option-label {
-        font-size: 50px;
-    }
-
-    .question-text {
-        font-size: 60px;
-    }
+.option-input {
+    width: 30px;
+    height: 30px;
+    margin-right: 16px;
 }
+
+.option-label {
+    font-size: 50px;
+}
+
+.question-text {
+    font-size: 60px;
+}
+
