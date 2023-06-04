@@ -1,6 +1,8 @@
 import {questions} from "./questions.js";
 
 let fieldNumber = 0;
+let spins = 0;
+let points = 0;
 const tableGrid = document.querySelector('#table-grid')
 const diceEl = document.querySelector('#dice');
 const rollBtn = document.querySelector('#roll-btn');
@@ -10,7 +12,7 @@ const messageEl = document.querySelector('#message');
 rollBtn.onclick = () => rollDice();
 
 // Init HTML table fields
-questions.forEach((question, index) => {
+questions.sort(() => Math.random() - 0.5).forEach((question, index) => {
     const gridItem = tableGrid.children[0].cloneNode()
     gridItem.innerHTML = index + 1;
 
@@ -31,9 +33,11 @@ const increaseFieldNumber = (idx) => {
 increaseFieldNumber(0)
 
 const rollDice = () => {
+    spins++;
     diceEl.style.visibility = 'visible';
     diceEl.style.bottom = 'calc(50% - 51px)';
     rollBtn.disabled = true;
+    document.querySelector('#spins').innerText = spins;
 
     const newNumber = Math.floor((Math.random() * 6) + 1);
     diceEl.className = 'dice';
@@ -130,10 +134,13 @@ const checkAnswer = (newNumber, questionIdx, questionOptions) => {
 
     if (parseInt(selectedValue) === questions[questionIdx].correctAnswerId) {
         increaseFieldNumber(newNumber)
-        showMessage('Correct answer!', true)
+        showMessage('Correct answer!', true);
+        points += 2;
     } else {
         showMessage('Incorrect answer!', false)
+        points -= 0.5;
     }
+    document.querySelector('#points').innerText = points;
 }
 
 const showMessage = (message, isSuccess, duration = 3000) => {
