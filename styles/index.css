@@ -113,7 +113,7 @@ html {
 #message {
     width: 300px;
     text-align: center;
-    z-index: 1;
+    z-index: 9;
     display: none;
     position: fixed;
     top: 8px;
