@@ -12,7 +12,7 @@ html {
     background-color: var(--primary-color);
 }
 
-#table-grid {
+#tableGrid {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -38,7 +38,8 @@ html {
     font-size: 30px;
 }
 
-#roll-btn {
+#rollBtn {
+    z-index: 1;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -51,19 +52,19 @@ html {
     margin-top: 16px;
 }
 
-#roll-btn:hover {
+#rollBtn:hover {
     opacity: 0.9;
 }
 
-#roll-btn:active {
+#rollBtn:active {
     opacity: 0.8;
 }
 
-#roll-btn:disabled {
+#rollBtn:disabled {
     opacity: 0.5;
 }
 
-#user-icon {
+#userIcon {
     position: absolute;
     left: -100px;
     transition: 1.5s all;
@@ -73,7 +74,7 @@ html {
     fill: var(--quartary-color);
 }
 
-#question {
+#modal {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -143,3 +144,46 @@ html {
     font-size: 70px;
 }
 
+.player-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-input-wrapper > label {
+    font-size: 50px;
+    margin-right: 16px;
+}
+
+.player-input-wrapper > input {
+    font-size: 40px;
+}
+
+.player-input-wrapper > button {
+    font-size: 30px;
+}
+
+#playBtn {
+    margin-top: 32px;
+    font-size: 40px;
+    cursor: pointer;
+    background-color: var(--success-color);
+    color: white;
+    padding: 32px;
+    border: none;
+    border-radius: 10px;
+}
+
+#resetPw {
+    font-size: 20px;
+    height: 46px;
+}
+
+#resetBtn {
+    background-color: var(--success-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    padding: 16px;
+}
