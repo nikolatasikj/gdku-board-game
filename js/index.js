@@ -27,6 +27,24 @@ const finishEl = tableGrid.children[0].cloneNode()
 finishEl.innerHTML = 'Finish';
 tableGrid.appendChild(finishEl)
 
+
+const savePlayerToAPI = () => {
+    const {fieldNumber, playerName, points, spins} = JSON.parse(localStorage.getItem('gdku-board-game'));
+
+    fetch('https://gdkuboard-2123.restdb.io/rest/players', {
+        method: "POST",
+        body: JSON.stringify({fieldNumber, playerName, points, spins}),
+        headers: {
+            "content-type": "application/json",
+            "x-apikey": "64879b0eacb4d41a963449ab",
+            "cache-control": "no-cache"
+        }
+    }).then(() => {
+        const player = {spins, points, fieldNumber, playerName, saved: true}
+        localStorage.setItem('gdku-board-game', JSON.stringify(player))
+    }).catch(() => showMessage('Can\'t save score right now, please refresh the page!', false, 5000))
+}
+
 const increaseFieldNumber = (idx) => {
     fieldNumber += idx;
     const fieldPosition = tableGrid.children[fieldNumber].getBoundingClientRect()
@@ -56,6 +74,10 @@ const checkUser = () => {
         if (fieldNumber === questions.length + 1) {
             rollBtn.disabled = true;
             rollBtn.children[0].innerText = 'You won!'
+
+            if (!player.saved) {
+                savePlayerToAPI();
+            }
         }
     } else {
         const inputWrapper = document.createElement('div');
@@ -232,12 +254,4 @@ const guidGenerator = () => {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-}
-
-const savePlayerToAPI = () => {
-    console.log('body;]]', {id: guidGenerator(), ...JSON.parse(localStorage.getItem('gdku-board-game'))})
-    fetch('https://my-json-server.typicode.com/nikolatasikj/gdku-board-game/players', {
-        method: "POST",
-        body: JSON.stringify({id: guidGenerator(), ...JSON.parse(localStorage.getItem('gdku-board-game'))})
-    })
 }
