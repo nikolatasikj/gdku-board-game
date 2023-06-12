@@ -36,10 +36,7 @@ const increaseFieldNumber = (idx) => {
 
 const saveUser = () => {
     const player = {
-        spins,
-        points,
-        fieldNumber,
-        playerName
+        spins, points, fieldNumber, playerName
     }
 
     localStorage.setItem('gdku-board-game', JSON.stringify(player))
@@ -230,5 +227,17 @@ const resetGame = () => {
     }
 }
 
+const guidGenerator = () => {
+    const S4 = function () {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    };
+    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
+
 const savePlayerToAPI = () => {
+    console.log('body;]]', {id: guidGenerator(), ...JSON.parse(localStorage.getItem('gdku-board-game'))})
+    fetch('https://my-json-server.typicode.com/nikolatasikj/gdku-board-game/players', {
+        method: "POST",
+        body: JSON.stringify({id: guidGenerator(), ...JSON.parse(localStorage.getItem('gdku-board-game'))})
+    })
 }
