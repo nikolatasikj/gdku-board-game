@@ -641,7 +641,7 @@ export const questions = [{
     options: [{id: 0, text: "The hard life"}, {id: 1, text: "Happiness and love"}, {
         id: 2, text: "Love, sacrifice and fight"
     }],
-    correctAnswerId: 0
+    correctAnswerId: 2
 }, {
     id: 97,
     text: "Which costumes have a black and white contrast?",
@@ -655,9 +655,9 @@ export const questions = [{
     text: "When did the people wear their national costumes?",
     imageUrl: 'images/macedonia/03.jpg',
     options: [{id: 0, text: "They wore them everyday"}, {id: 1, text: "They wore them only to church"}, {
-        id: 2, text: "They wore them only on their wedding day"
+        id: 2, text: "The wore them on religious events/holidays and weddings"
     }],
-    correctAnswerId: 0
+    correctAnswerId: 2
 }, {
     id: 99,
     text: "What kind of people are ‘Torbeshi’?",
@@ -669,7 +669,7 @@ export const questions = [{
     text: "What is this narrow, decorative and ornamented belt called?",
     imageUrl: 'images/macedonia/05.jpg',
     options: [{id: 0, text: "Skutina"}, {id: 1, text: "Oji"}, {id: 2, text: "Dzunica"}],
-    correctAnswerId: 0
+    correctAnswerId: 2
 }, {
     id: 101,
     text: "What is the tool that is used for the Macedonian crochet?",
@@ -683,7 +683,7 @@ export const questions = [{
     options: [{id: 0, text: "An art form of crocheting"}, {id: 1, text: "An art piece on a canvas"}, {
         id: 2, text: "An art form of designing metal jewelry with silver"
     }],
-    correctAnswerId: 0
+    correctAnswerId: 2
 }, {
     id: 103,
     text: "What is the dominant color on the embroidery from the region of Skopska Crna Gora?",
@@ -695,13 +695,13 @@ export const questions = [{
     text: "What are pottery dishes made of?",
     imageUrl: 'images/macedonia/09.jpeg',
     options: [{id: 0, text: "Silver"}, {id: 1, text: "Bronze"}, {id: 2, text: "Clay"}],
-    correctAnswerId: 0
+    correctAnswerId: 2
 }, {
     id: 105,
     text: "When does the wood carving technique dates back from?",
     imageUrl: 'images/macedonia/10.webp',
     options: [{id: 0, text: "15th century"}, {id: 1, text: "12th century"}, {id: 2, text: "11th century"}],
-    correctAnswerId: 0
+    correctAnswerId: 1
 },]
 
 
